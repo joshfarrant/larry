@@ -9,11 +9,11 @@ module.exports = {
   },
   cmds: {
     before: function before() {
-      return 'mkdir tars';
+      return 'echo "mkdir tars"';
     },
     afterEach: function after(dir) {
       var name = path.parse(dir).name;
-      return 'tar -cf tars/' + name + '.tar -C example app';
+      return 'echo "tar -cf tars/' + name + '.tar -C example app"';
     }
   }
 };
