@@ -2,9 +2,9 @@
 
 var _io = require('./modules/io');
 
-var _larry = require('../larry.config');
+var _config = require('./modules/config');
 
-var _larry2 = _interopRequireDefault(_larry);
+var _config2 = _interopRequireDefault(_config);
 
 require('colors');
 
@@ -16,10 +16,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 _betterConsole2.default.log('\nHello, Larry!\n'.rainbow);
 
-var _config$copy = _larry2.default.copy;
+var _config$copy = _config2.default.copy;
 var src = _config$copy.src;
 var dst = _config$copy.dst;
-var _config$cmds = _larry2.default.cmds;
+var _config$cmds = _config2.default.cmds;
 var afterEach = _config$cmds.afterEach;
 var before = _config$cmds.before;
 

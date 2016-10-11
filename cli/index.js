@@ -1,5 +1,5 @@
 import { copy, getDirs, exec } from './modules/io';
-import config from '../larry.config';
+import config from './modules/config';
 import 'colors';
 import console from 'better-console';
 
