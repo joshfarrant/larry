@@ -1,3 +1,3 @@
-import config from '../larry.config';
+import config from '../../larry.config';
 
 export default config;
