@@ -16,10 +16,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 _betterConsole2.default.log('\nHello, Larry!\n'.rainbow);
 
-var _config$copy = _config2.default.copy;
-var src = _config$copy.src;
-var dst = _config$copy.dst;
+var src = _config2.default.src;
 var _config$cmds = _config2.default.cmds;
+var after = _config$cmds.after;
 var afterEach = _config$cmds.afterEach;
 var before = _config$cmds.before;
 
@@ -43,17 +42,9 @@ runBefore().then(function () {
   return (0, _io.getDirs)(src);
 }).then(function (dirs) {
 
-  /**
-   * Builds an array of functions, each of which
-   * returns a promise. The promise copies the
-   * files to the destination, runs the afterEach
-   * command, then moves on to the next function
-   */
   var funcs = dirs.map(function (dir) {
     return function () {
-      return (0, _io.copy)(dir, dst).then(function () {
-        return (0, _io.exec)(afterEach(dir));
-      }).catch(function (err) {
+      return (0, _io.exec)(afterEach(dir)).catch(function (err) {
         return _betterConsole2.default.log(err);
       });
     };
@@ -68,6 +59,8 @@ runBefore().then(function () {
   return funcs.reduce(function (p, fn) {
     return p.then(fn);
   }, Promise.resolve());
+}).then(function () {
+  return (0, _io.exec)(after());
 }).then(function () {
   _betterConsole2.default.log('\nLarry\'s all done!!!'.bold.green);
 }).catch(function (err) {

@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _larry = require('../../../larry.config');
+var _larry = require('../../../../larry.config');
 
 var _larry2 = _interopRequireDefault(_larry);
 

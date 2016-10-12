@@ -1,11 +1,11 @@
-import { copy, getDirs, exec } from './modules/io';
+import { getDirs, exec } from './modules/io';
 import config from './modules/config';
 import 'colors';
 import console from 'better-console';
 
 console.log('\nHello, Larry!\n'.rainbow);
 
-const { copy: { src, dst }, cmds: { afterEach, before } } = config;
+const { src, cmds: { after, afterEach, before } } = config;
 
 /**
  * The magic chain of promises that
@@ -27,16 +27,8 @@ const runBefore = () => {
 
 runBefore().then(() => getDirs(src)).then(dirs => {
 
-  /**
-   * Builds an array of functions, each of which
-   * returns a promise. The promise copies the
-   * files to the destination, runs the afterEach
-   * command, then moves on to the next function
-   */
   const funcs = dirs.map(dir => {
-    return () => copy(dir, dst)
-                  .then(() => exec(afterEach(dir)))
-                  .catch(err => console.log(err));
+    return () => exec(afterEach(dir)).catch(err => console.log(err));
   });
 
   /**
@@ -47,7 +39,9 @@ runBefore().then(() => getDirs(src)).then(dirs => {
    */
   return funcs.reduce((p, fn) => p.then(fn), Promise.resolve());
 
-}).then(() => {
+})
+.then(() => exec(after()))
+.then(() => {
   console.log('\nLarry\'s all done!!!'.bold.green);
 }).catch(err => {
   console.log('err: ', err);
