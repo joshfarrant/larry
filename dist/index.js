@@ -60,7 +60,7 @@ runBefore().then(function () {
     return p.then(fn);
   }, Promise.resolve());
 }).then(function () {
-  return (0, _io.exec)(after());
+  return typeof after === 'function' ? (0, _io.exec)(after()) : function () {};
 }).then(function () {
   _betterConsole2.default.log('\nLarry\'s all done!!!'.bold.green);
 }).catch(function (err) {

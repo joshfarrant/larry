@@ -40,7 +40,7 @@ runBefore().then(() => getDirs(src)).then(dirs => {
   return funcs.reduce((p, fn) => p.then(fn), Promise.resolve());
 
 })
-.then(() => exec(after()))
+.then(() => (typeof after === 'function' ? exec(after()) : () => {}))
 .then(() => {
   console.log('\nLarry\'s all done!!!'.bold.green);
 }).catch(err => {
