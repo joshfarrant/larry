@@ -1,6 +1,6 @@
 {
   "name": "larry",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A build tool",
   "main": "./larry.js",
   "scripts": {
