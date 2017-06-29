@@ -3,6 +3,7 @@
   "version": "1.0.4",
   "description": "A build tool",
   "main": "./larry.js",
+  "bin": "./larry.js",
   "scripts": {
     "start": "node ./larry.js",
     "build": "./scripts/build.sh",
